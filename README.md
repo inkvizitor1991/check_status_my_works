@@ -6,7 +6,8 @@
 3. Сохраните скрипт на свой компьютер:
 ```
 git clone https://github.com/inkvizitor1991/check_status_my_works
-``` 
+```
+
 3. Установите зависимости:
 ```
 pip install -r requirements.txt
@@ -17,31 +18,44 @@ pip install -r requirements.txt
 1. Создаем образ контейнера:
 ``` 
 docker build -t bot .
-``` 
+```
+
 2. Запускаем контейнер:
 ``` 
 docker run --env-file .env --name bot bot
-``` 
+```
+
 ## Для запуска на HEROKU
 
 1. Авторизуемся:
 ``` 
 heroku login
-heroku container:login
-``` 
+```
 
 2. Создаем приложение:
 ``` 
 heroku create
+```
+
+3. Подключаемся к удаленному репозиторию `heroku`:
 ``` 
-3. Делаем пуш:
+heroku git:remote -a <название приложения>
+```
+
+4. Добавляем переменные окружения:
+```
+heroku config:set <ПЕРЕМЕННАЯ=значение>
+```
+
+5. Устанавливаем `stack` в режим `container`:
 ``` 
-heroku container:push <название приложения>
-``` 
-4. Разворачиваем образ и запускаем его:
-``` 
-heroku container:release <название приложения>
-``` 
+heroku stack:set container
+```
+
+6. Делаем push:
+```
+git push heroku main
+```
 
 ### Переменные окружения
 
